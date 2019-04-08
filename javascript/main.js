@@ -8,7 +8,6 @@ var secUni      = document.getElementById('secUni');
 var milDec      = document.getElementById('milDec');
 var milUni      = document.getElementById('milUni');
 
-
 function printTime() {
 
 }
