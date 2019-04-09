@@ -36,50 +36,56 @@ function printMilliseconds() {
 }
 
 function printSplit() {
-
+  let list = document.createElement("li");
+  list.innerHTML = chronometer.setTime();
+  list.setAttribute("class", "listItems");
+  olist.appendChild(list);
 }
 
 function clearSplits() {
-
+  var elem1 = document.querySelectorAll('.listItems');
+  var elem = [...elem1];
+  elem.forEach(function(element){element.parentNode.removeChild(element);
+});
 }
 
 function setStopBtn() {
- 
+  btnLeft.innerHTML ="STOP";
+  btnLeft.classList.toggle("btnstop");
+  btnLeft.style.backgroundColor = "red";
 }
 
 function setSplitBtn() {
+  btnRight.classList.toggle("btnsplit");
+  btnRight.innerHTML = "SPLIT";
+  btnRight.style.backgroundColor = "blue";
 
 }
 
 function setStartBtn() {
-
+  btnLeft.innerHTML ="START";
+  btnLeft.classList.toggle("btnstart");
+  btnLeft.style.backgroundColor = "green";
 }
 
 function setResetBtn() {
-
+  btnRight.classList.toggle("btnreset");
+  btnRight.innerHTML = "RESET";
+  btnRight.style.backgroundColor = "grey";
 }
 
 // Start/Stop Button
 btnLeft.addEventListener('click', function () {
   if (btnLeft.innerHTML === "START"){
-    btnLeft.innerHTML ="STOP";
-    btnLeft.classList.toggle("btnstop");
-    btnLeft.style.backgroundColor = "red";
-    btnRight.classList.toggle("btnsplit");
-    btnRight.innerHTML = "SPLIT";
+    setStopBtn();
     chronometer.startClick();
-    btnRight.style.backgroundColor = "blue";
-  } 
+    setSplitBtn();
+    } 
   else if (btnLeft.innerHTML === "STOP"){
-    btnLeft.innerHTML ="START";
-    btnLeft.classList.toggle("btnstart");
-    btnRight.classList.toggle("btnreset");
-    btnRight.innerHTML = "RESET";
+    setStartBtn();
+    setResetBtn();
     chronometer.stopClick();
-    btnLeft.style.backgroundColor = "green";
-    btnRight.style.backgroundColor = "grey";
   }
-  
   });
 
 
@@ -89,24 +95,17 @@ btnLeft.addEventListener('click', function () {
 
 // Reset/Split Button
 btnRight.addEventListener('click', function () {
-if (btnRight.innerHTML === "SPLIT"){
-  let list = document.createElement("li");
-  list.innerHTML = chronometer.setTime();
-  list.setAttribute("class", "listItems");
-  olist.appendChild(list);
-}
+  if (btnRight.innerHTML === "SPLIT"){
+    printSplit();
+  }
 
-if (btnRight.innerHTML === "RESET"){
-  minDec.innerHTML = 0;
-  minUni.innerHTML = 0;
-  secDec.innerHTML = 0;
-  secUni.innerHTML = 0;
-  chronometer.resetClick();
-  
-  var elem1 = document.querySelectorAll('.listItems');
-  var elem = [...elem1];
-  elem.forEach(function(element){element.parentNode.removeChild(element);
-});
+  if (btnRight.innerHTML === "RESET"){
+    minDec.innerHTML = 0;
+    minUni.innerHTML = 0;
+    secDec.innerHTML = 0;
+    secUni.innerHTML = 0;
+    chronometer.resetClick();
+    clearSplits(); 
 }
 });
 
