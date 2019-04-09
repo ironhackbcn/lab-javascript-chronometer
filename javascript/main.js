@@ -39,7 +39,7 @@ function printSplit() {
 
 function clearSplits() {
   while (splitsOl.firstChild) {
-    splitsOl.removeChild(splitsOl.children);
+    splitsOl.removeChild(splitsOl.firstChild);
   }
 }
 
