@@ -10,7 +10,6 @@ var milUni      = document.getElementById('milUni');
 
 
 function printTime(timeArray) {
-  console.log(timeArray);
   minDec.innerHTML = timeArray[0][0]; // output time values by array index location
   minUni.innerHTML = timeArray[0][1]; 
   secDec.innerHTML = timeArray[1][0]; 
