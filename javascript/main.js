@@ -10,20 +10,19 @@ var milUni      = document.getElementById('milUni');
 
 
 function printTime(timeArray) {
-  //printSeconds(timeArray);
-
-  minDec.innerHTML = printMinutes(timeArray[0][0]);
-  minUni.innerHTML = printMinutes(timeArray[0][1]);
-  secDec.innerHTML = printSeconds(timeArray[1][0]);
-  secUni.innerHTML = printSeconds(timeArray[1][1]);
+  console.log(timeArray);
+  minDec.innerHTML = timeArray[0][0]; // output time values by array index location
+  minUni.innerHTML = timeArray[0][1]; 
+  secDec.innerHTML = timeArray[1][0]; 
+  secUni.innerHTML = timeArray[1][1]; 
 }
 
-function printMinutes(timeArray) {
-  return(timeArray);
+function printMinutes() {
+  
 }
 
-function printSeconds(timeArray) {
-  return(timeArray);
+function printSeconds() {
+
 }
 
 function printMilliseconds() {
@@ -38,13 +37,14 @@ function formatTime(time){
 
 function printSplit() {
   let splitsList = document.getElementById('splits');
-  let splitTimeItem = document.createElement('li');
-  splitTimeItem.innerHTML = formatTime(chronometer.setTime());
-  splitsList.appendChild(splitTimeItem);
+  let splitTimeItem = document.createElement('li'); // create the list item
+  splitTimeItem.innerHTML = formatTime(chronometer.setTime()); // insert the time to the list item
+  splitsList.appendChild(splitTimeItem); // add the list item to the list
 }
 
 function clearSplits() {
-
+  let splitsList = document.getElementById('splits');
+  splitsList.innerHTML = ""; // replace the list items with an empty string
 }
 
 function setStopBtn() {
@@ -54,7 +54,7 @@ function setStopBtn() {
 
 function setSplitBtn() {
   btnRight.setAttribute('class', 'btn split');
-    btnRight.innerHTML = "SPLIT";
+  btnRight.innerHTML = "SPLIT";
 }
 
 function setStartBtn() {
@@ -64,7 +64,7 @@ function setStartBtn() {
 
 function setResetBtn() {
   btnRight.setAttribute('class', 'btn reset');
-    btnRight.innerHTML = "RESET";
+  btnRight.innerHTML = "RESET";
 }
 
 // Start/Stop Button
@@ -82,5 +82,10 @@ btnLeft.addEventListener('click', function () {
 
 // Reset/Split Button
 btnRight.addEventListener('click', function () {
-  printSplit();
+  if(btnRight.innerHTML == "SPLIT") { // if the button still display SPLIT
+    printSplit(); // keep outputting split times
+  } else { // otherwise the button display RESET
+    clearSplits(); // remove the split times
+    printTime(["00","00"]); // reset the clock to 00:00
+  }
 });
