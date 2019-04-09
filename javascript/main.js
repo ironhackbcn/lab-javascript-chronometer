@@ -19,7 +19,7 @@ function printTime(timeArray) {
 }
 
 function printMinutes(timeArray) {
-  return(timeArray[0]);
+  return(timeArray);
 }
 
 function printSeconds(timeArray) {
@@ -30,8 +30,17 @@ function printMilliseconds() {
 
 }
 
-function printSplit() {
+function formatTime(time){
+  let dirtyTime = time.toString(); // convert the time array to a string
+  let cleanTime = dirtyTime.replace(',',':'); // replace , in the string with :
+  return cleanTime;
+}
 
+function printSplit() {
+  let splitsList = document.getElementById('splits');
+  let splitTimeItem = document.createElement('li');
+  splitTimeItem.innerHTML = formatTime(chronometer.setTime());
+  splitsList.appendChild(splitTimeItem);
 }
 
 function clearSplits() {
@@ -58,10 +67,6 @@ function setResetBtn() {
     btnRight.innerHTML = "RESET";
 }
 
-function printTimeCallback(){
-  
-}
-
 // Start/Stop Button
 btnLeft.addEventListener('click', function () {
   if(btnLeft.innerHTML == "START"){
@@ -77,5 +82,5 @@ btnLeft.addEventListener('click', function () {
 
 // Reset/Split Button
 btnRight.addEventListener('click', function () {
-
+  printSplit();
 });
