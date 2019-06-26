@@ -45,6 +45,16 @@ body {
   padding-bottom: 5px;
   text-align: right;
 }
+#laps-container {
+  font-size: 20px;
+  font-weight: 100;
+  position: absolute;
+  right: 100px;
+}
+#laps-container li {
+  padding-bottom: 5px;
+  text-align: right;
+}
 
 #milliseconds {
   font-size: 36px;
@@ -111,7 +121,15 @@ body {
   right: 10px;
 }
 
-.btn.start { background: #5fca5f; }
-.btn.stop  { background: #f14949; }
-.btn.reset { background: #908e8e; }
-.btn.split { background: #0851ab; }
+.btn.start {
+  background: #5fca5f;
+}
+.btn.stop {
+  background: #f14949;
+}
+.btn.reset {
+  background: #908e8e;
+}
+.btn.split {
+  background: #0851ab;
+}
