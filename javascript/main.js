@@ -15,6 +15,7 @@ function printTime() {
   console.log(`Dentro PrintTime`);
   printSeconds();
   printMinutes();
+  printMilliseconds();
 }
 
 function printMinutes() {
@@ -22,10 +23,12 @@ function printMinutes() {
   let minutes = chronometer.minutes;
   console.log("TCL: printMinutes -> minutes", minutes);
 
-  minutesUni = minutes.toString().slice(1);
-  minutesDec = minutes.toString().slice(0, 1);
-  minUni.innerHTML = `${minutesUni}`;
-  minDec.innerHTML = `${minutesDec}`;
+  minUni.innerHTML = `${chronometer.twoDigitsNumber(minutes)[1]}`;
+  minDec.innerHTML = `${chronometer.twoDigitsNumber(minutes)[0]}`;
+  // minutesUni = minutes.toString().slice(1);
+  // minutesDec = minutes.toString().slice(0, 1);
+  // minUni.innerHTML = `${minutesUni}`;
+  // minDec.innerHTML = `${minutesDec}`;
 }
 
 function printSeconds() {
@@ -33,13 +36,18 @@ function printSeconds() {
   let seconds = chronometer.seconds;
   console.log("TCL: printSeconds -> seconds", seconds);
 
-  secondsUni = seconds.toString().slice(1);
-  secondsDec = seconds.toString().slice(0, 1);
-  secUni.innerHTML = `${secondsUni}`;
-  secDec.innerHTML = `${secondsDec}`;
+  secUni.innerHTML = `${chronometer.twoDigitsNumber(seconds)[1]}`;
+  secDec.innerHTML = `${chronometer.twoDigitsNumber(seconds)[0]}`;
+  // secondsUni = seconds.toString().slice(1);
+  // secondsDec = seconds.toString().slice(0, 1);
+  // secUni.innerHTML = `${secondsUni}`;
+  // secDec.innerHTML = `${secondsDec}`;
 }
 
-function printMilliseconds() {}
+function printMilliseconds() {
+  milUni.innerHTML = `${chronometer.milliSeconds[1]}`;
+  milDec.innerHTML = `${chronometer.milliSeconds[0]}`;
+}
 
 function printSplit() {
   let split = document.getElementById("splits");
@@ -80,22 +88,15 @@ function setResetBtn() {
 // Start/Stop Button
 btnLeft.addEventListener("click", function() {
   if (btnLeft.classList.contains("start")) {
-    setStopBtn();
-    setSplitBtn();
-
     chronometer.startClick();
 
-    intervalId = setInterval(function() {
-      printTime();
-    }, 1000);
-
-    // printTime();
+    setStopBtn();
+    setSplitBtn();
   } else {
+    chronometer.stopClick();
+
     setStartBtn();
     setResetBtn();
-
-    chronometer.stopClick();
-    clearInterval(intervalId);
   }
 });
 

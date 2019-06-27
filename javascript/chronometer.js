@@ -2,16 +2,30 @@
 function Chronometer() {
   this.currentTime = 0;
   this.intervalId = 0;
+  this.intervalMilliId = 0;
+  this.milliSeconds = 0;
 }
 
 Chronometer.prototype.startClick = function() {
-  this.intervalId = setInterval(
+  this.intervalMilliId = setInterval(
     function() {
-      this.currentTime++;
-      this.setTime();
+      this.milliSeconds++;
+      console.log(this);
+      this.setMilliseconds();
+      printMilliseconds();
     }.bind(this),
-    1000
+    10
   );
+
+  // this.intervalId = setInterval(
+  //   function() {
+  //     this.currentTime++;
+  //     this.setTime();
+  //     printTime();
+  //     console.log(this);
+  //   }.bind(this),
+  //   1000
+  // );
 };
 
 Chronometer.prototype.setMinutes = function() {
@@ -22,7 +36,6 @@ Chronometer.prototype.setMinutes = function() {
 };
 
 Chronometer.prototype.setSeconds = function() {
-  //   var minutes = this.setMinutes();
   var seconds = this.currentTime % 60;
 
   return seconds;
@@ -35,28 +48,39 @@ Chronometer.prototype.twoDigitsNumber = function(number) {
 Chronometer.prototype.setTime = function() {
   this.minutes = this.twoDigitsNumber(this.setMinutes());
   this.seconds = this.twoDigitsNumber(this.setSeconds());
+
   console.log(
     "TCL: Chronometer.prototype.setTime -> this.seconds",
     this.seconds
   );
 };
 
-// Chronometer.prototype.setMilliseconds = function () {
-
-// };
+Chronometer.prototype.setMilliseconds = function() {
+  if (this.milliSeconds >= 100) {
+    this.milliSeconds = this.twoDigitsNumber(0);
+    this.currentTime++;
+    this.setTime();
+    // printMilliseconds();
+    printTime();
+    // this.milliSeconds = this.twoDigitsNumber(0);
+  }
+  this.milliSeconds = this.twoDigitsNumber(this.milliSeconds);
+};
 
 Chronometer.prototype.stopClick = function() {
   clearInterval(this.intervalId);
+  clearInterval(this.intervalMilliId);
 };
 
 Chronometer.prototype.resetClick = function() {
   this.currentTime = 0;
+  this.milliSeconds = this.twoDigitsNumber(0);
   this.setTime();
 };
 
 Chronometer.prototype.splitClick = function() {
   let splitTime;
-  splitTime = `${this.minutes}:${this.seconds}`;
+  splitTime = `${this.minutes}:${this.seconds}:${this.milliSeconds}`;
   console.log("TCL: Chronometer.prototype.splitClick -> splitTime", splitTime);
   return splitTime;
 };
