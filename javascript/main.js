@@ -46,6 +46,9 @@ function clearSplits() {
 
 function setStopBtn() {
   chronometer.stopClick();
+  btnLeft.innerHTML = 'START'
+  btnRight.innerHTML = 'RESET'
+
 }
 
 function setSplitBtn() {}
@@ -53,11 +56,14 @@ function setSplitBtn() {}
 function setStartBtn() {
   chronometer.startClick()
   printTime()
-
+  btnLeft.innerHTML = 'STOP'
+  btnRight.innerHTML = 'SPLIT'
 }
 
 
 function setResetBtn() {
+  chronometer.resetClick();
+  printTime()
 
 }
 
@@ -68,7 +74,6 @@ btnLeft.addEventListener('click', function () {
   stateStartStopButton++
   if (stateStartStopButton % 2 == 0) {
     setStartBtn();
-    printTime()
   } else {
     console.log(stateStartStopButton)
     setStopBtn();
@@ -80,10 +85,10 @@ var stateRestSplitButton = 1
 
 // Reset/Split Button
 btnRight.addEventListener('click', function () {
-  stateRestSplitButton++
-  if (stateStartStopButton % 2 !== 0) {
-    chronometer.resetClick();
+  stateRestSplitButton++;
+  if (stateStartStopButton % 2 != 0) {
+    setResetBtn();
   } else {
-    chronometer.splitClick();
+
   }
 });
