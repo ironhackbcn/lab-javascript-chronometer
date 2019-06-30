@@ -3,8 +3,8 @@ class Chronometer {
     constructor() {
         this.currentTime = 0;
         this.intervalId = 0;
-        this.minutes;
-        this.seconds;
+        this.minutes = 0;
+        this.seconds = 0;
     }
 
     startClick() {
@@ -15,7 +15,11 @@ class Chronometer {
     }
 
     setMinutes() {
-        return (Math.round(parseFloat(this.currentTime / 60)));
+        if (this.currentTime >= 60) {
+            return (Math.round(parseFloat(this.currentTime / 60)));
+        } else {
+            return 0;
+        }
     }
 
     setSeconds() {
@@ -23,20 +27,17 @@ class Chronometer {
     }
 
     twoDigitsNumber(value) {
-        let newValue = "" + value;
-        if (newValue.split("").length === 1) {
-            console.log('recibo uno de un dígito' + '0' + newValue);
-            return '0' + newValue
+        if (value < 10) {
+            return "0" + value;
         } else {
-            return newValue;
+            return "" + value;
         }
     }
 
     setTime() {
         this.minutes = this.twoDigitsNumber(this.setMinutes(this.currentTime));
-        this.setSeconds = this.twoDigitsNumber(this.setSeconds(this.currentTime));
+        this.seconds = this.twoDigitsNumber(this.setSeconds(this.currentTime));
     }
-
 
     setMilliseconds() {
 
@@ -47,7 +48,7 @@ class Chronometer {
     }
 
     resetClick() {
-        this.setTime = 0;
+        this.currentTime = 0;
     }
 
     splitClick() {
@@ -55,15 +56,3 @@ class Chronometer {
     }
 
 }
-
-
-
-
-
-let cron = new Chronometer();
-cron.startClick();
-console.log(cron.currentTime);
-console.log(cron.intervalId);
-console.log(cron.setSeconds())
-
-cron.twoDigitsNumber(8);
