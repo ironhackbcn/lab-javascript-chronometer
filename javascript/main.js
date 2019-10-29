@@ -80,6 +80,10 @@ if(btnRight.innerHTML==='SPLIT') {
     document.getElementById('splits').appendChild(liElement);
 }else {
     chronometer.resetClick();
+    const splitList = document.getElementById("splits");
+    while (splitList.firstChild) {
+        splitList.removeChild(splitList.firstChild);
+    }
 }
         
 });
