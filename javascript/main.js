@@ -12,6 +12,7 @@ var milUni      = document.getElementById('milUni');
 function printTime() {
     printMinutes();
     printSeconds();
+    printMilliseconds();
 }
 
 function printMinutes() {
@@ -27,32 +28,11 @@ function printSeconds() {
 }
 
 function printMilliseconds() {
-
+    let milliseconds = chronometer.twoDigitsNumber(chronometer.milliseconds).split('');
+    milDec.innerHTML = milliseconds[0];
+    milUni.innerHTML = milliseconds[1];
 }
 
-function printSplit() {
-
-}
-
-function clearSplits() {
-
-}
-
-function setStopBtn() {
-
-}
-
-function setSplitBtn() {
-
-}
-
-function setStartBtn() {
-
-}
-
-function setResetBtn() {
-
-}
 
 // Start/Stop Button
 btnLeft.addEventListener('click', function () {    
@@ -74,7 +54,7 @@ btnLeft.addEventListener('click', function () {
 // Reset/Split Button
 btnRight.addEventListener('click', function () {
 if(btnRight.innerHTML==='SPLIT') {
-    let splitTime = chronometer.twoDigitsNumber(chronometer.setMinutes()) + ':' + chronometer.twoDigitsNumber(chronometer.setSeconds());
+    let splitTime = chronometer.twoDigitsNumber(chronometer.setMinutes()) + ':' + chronometer.twoDigitsNumber(chronometer.setSeconds()) + ':' + chronometer.twoDigitsNumber(chronometer.milliseconds);
     let liElement = document.createElement('li');
     liElement.innerHTML = splitTime;
     document.getElementById('splits').appendChild(liElement);
@@ -88,4 +68,4 @@ if(btnRight.innerHTML==='SPLIT') {
         
 });
 
-setInterval(()=>printTime(),1000);
+setInterval(()=>printTime(),1);
