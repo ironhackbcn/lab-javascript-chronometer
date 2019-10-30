@@ -24,14 +24,15 @@ function printSeconds(seconds) {
   secUni.innerHTML = seconds[1];
 }
 
-function printMilliseconds() {
-
+function printMilliseconds(milliseconds) {
+  milDec.innerHTML = milliseconds[0];
+  milUni.innerHTML = milliseconds[1];
 }
 
-function printSplit(minutes, seconds) {
+function printSplit(minutes, seconds, miliseconds) {
   var list = document.getElementById('splits');
   var item = document.createElement('li');
-  item.innerHTML =  minutes+':'+seconds;
+  item.innerHTML =  minutes+':'+seconds+':'+miliseconds;
   list.appendChild(item);
 }
 
