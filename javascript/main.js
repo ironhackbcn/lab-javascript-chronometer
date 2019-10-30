@@ -12,7 +12,6 @@ var milUni      = document.getElementById('milUni');
 function printTime(minutes, seconds) {
   printMinutes(minutes);
   printSeconds(seconds);
-  console.log(chronometer.currentTime)
 }
 
 function printMinutes(minutes) {
@@ -25,71 +24,65 @@ function printSeconds(seconds) {
   secUni.innerHTML = seconds[1];
 }
 
+function printMilliseconds() {
 
-// function printMilliseconds() {
-//   console.log('printMilliseconds() was called!');
-// }
+}
 
 function printSplit(minutes, seconds) {
-  var splitEl = minutes + ':' + seconds;
-  var liEl = document.createElement('li');
-  liEl.innerHTML = splitEl;
-  var splitlist = document.getElementById('splits');
-  splitlist.appendChild(liEl);
+  var list = document.getElementById('splits');
+  var item = document.createElement('li');
+  item.innerHTML =  minutes+':'+seconds;
+  list.appendChild(item);
 }
 
 function clearSplits() {
+  // set list to ''
   document.getElementById('splits').innerHTML = '';
 }
 
 function setStopBtn() {
-  console.log('setStopBtn() was called!');
-  chronometer.stopClick();
-  clearSplits()
+  chronometer.startClick();
+  btnLeft.innerHTML = 'STOP';
+  btnLeft.classList.remove('start');
+  btnLeft.classList.add('stop');
 }
 
 function setSplitBtn() {
-  chronometer.splitClick();
+  btnRight.innerHTML = 'SPLIT';
+  btnRight.classList.remove('reset');
+  btnRight.classList.add('split');
 }
 
 function setStartBtn() {
-  console.log('setStartBtn() was called!');
-  chronometer.startClick();
+  chronometer.stopClick();
+  btnLeft.innerHTML = 'START';
+  btnLeft.classList.remove('stop');
+  btnLeft.classList.add('start');
 }
 
 function setResetBtn() {
-  console.log('setResetBtn() was called!');
-  chronometer.resetClick();
+  btnRight.innerHTML = 'RESET';
+  btnRight.classList.remove('split');
+  btnRight.classList.add('reset');
 }
 
 // Start/Stop Button
 btnLeft.addEventListener('click', function () {
-  if(btnLeft.classList.contains("start")) {
-    setStartBtn();
-    btnLeft.classList.remove('start');
-    btnLeft.classList.add('stop');  
-    btnLeft.innerHTML = 'STOP';
-    btnRight.classList.remove('reset');
-    btnRight.classList.add('split');  
-    btnRight.innerHTML = 'SPLIT';
-  } else {
+  if (btnLeft.classList.contains('start')) {
     setStopBtn();
-    btnLeft.classList.remove('stop');
-    btnLeft.classList.add('start');
-    btnLeft.innerHTML = 'START';
-    btnRight.classList.remove('split');
-    btnRight.classList.add('reset');  
-    btnRight.innerHTML = 'RESET';
-  }  
+    setSplitBtn();
+  } else {
+    setStartBtn();
+    setResetBtn();
+  }
 });
-
-
 
 // Reset/Split Button
 btnRight.addEventListener('click', function () {
-  if(btnRight.classList.contains("reset")) {
-    setResetBtn();
+  if (btnRight.classList.contains('reset')) {
+    clearSplits()
+    chronometer.resetClick();
   } else {
-    setSplitBtn();
-  }  
+    chronometer.splitClick();
+  }
 });
