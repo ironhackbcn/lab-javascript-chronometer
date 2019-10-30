@@ -30,7 +30,7 @@ Chronometer.prototype.twoDigitsNumber = function (num) {
 };
 
 Chronometer.prototype.setTime = function () {
-    console.log(this.setSeconds(), this.milliseconds);
+    
 };
 
 Chronometer.prototype.setMilliseconds = function () {
