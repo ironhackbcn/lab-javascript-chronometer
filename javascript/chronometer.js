@@ -50,10 +50,10 @@ Chronometer.prototype.resetClick = function () {
   this.currentTime=clearInterval(this.currentTime);
   this.currentTime=0;
    
-  var minDec      = document.getElementById('minDec');
-  var minUni      = document.getElementById('minUni');
-  var secDec      = document.getElementById('secDec');
-  var secUni      = document.getElementById('secUni');
+  var minDec= document.getElementById('minDec');
+  var minUni= document.getElementById('minUni');
+  var secDec= document.getElementById('secDec');
+  var secUni= document.getElementById('secUni');
   minDec.innerHTML=0;
   minUni.innerHTML=0;
   secDec.innerHTML=0;

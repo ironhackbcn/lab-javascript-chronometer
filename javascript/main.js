@@ -80,14 +80,20 @@ btnLeft.addEventListener('click', function () {
     }
 });
 
+
 // Reset/Split Button
 btnRight.addEventListener('click', function () {
     if (btnRight.className==="btn reset"){
         setResetBtn();
+        var splitElements=document.getElementById("splits");
+        while(splitElements.firstChild){
+            splitElements.removeChild(splitElements.firstChild);
+        }
     }
     else if(btnRight.className==="btn split"){
         var orderList = document.querySelector("#splits");
         var newListElement = document.createElement("li");
+        newListElement.className="splitElement";
         var updatedTime=[...chronometer.setTime()];
         newListElement.innerHTML=`${updatedTime[0]}:${updatedTime[1]}`;
         orderList.appendChild(newListElement);
