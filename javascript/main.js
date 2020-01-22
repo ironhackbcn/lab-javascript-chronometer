@@ -11,20 +11,22 @@ var milUni      = document.getElementById('milUni');
 
 
 function printTime() {
-   
+   printMinutes();
+   printSeconds();
     
 }
 
 function printMinutes() {
-    var minutes = chronometer.setMinutes();
-    
+    var minutes = chronometer.setTime()[0];
+    console.log(minutes);
     minDec.innerHTML = minutes[0];
     minUni.innerHTML = minutes[1];
+    
 }
 
 function printSeconds() {
-    var seconds = chronometer.setSeconds();
-    
+    var seconds = chronometer.setTime()[1];
+    console.log(seconds);
     secDec.innerHTML = seconds[0];
     secUni.innerHTML = seconds[1];
 }
@@ -65,8 +67,7 @@ btnLeft.addEventListener('click', function () {
         btnRight.className="btn split";
         btnRight.innerHTML="SPLIT";
         setStartBtn();
-        printSeconds();
-        printMinutes();
+        
     }
     else if (btnLeft.className==="btn stop"){
         btnLeft.className="btn start";
@@ -78,5 +79,15 @@ btnLeft.addEventListener('click', function () {
 
 // Reset/Split Button
 btnRight.addEventListener('click', function () {
-    
+    if (btnRight.className==="btn reset"){
+        
+    }
+    else if(btnRight.className==="btn split"){
+        var orderList = document.querySelector("#splits");
+        var newListElement = document.createElement("li");
+        var updatedTime=[...chronometer.setTime()];
+        newListElement.innerHTML=`${updatedTime[0]}:${updatedTime[1]}`;
+        orderList.appendChild(newListElement);
+        
+    }
 });
