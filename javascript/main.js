@@ -15,6 +15,7 @@ var splits      = document.getElementById('splits');
 function printTime() {
   printMinutes();
   printSeconds();
+  printMilliseconds();
 }
 
 function printMinutes() {
@@ -80,7 +81,7 @@ btnLeft.addEventListener('click', function () {
 btnRight.addEventListener('click', function () {
   if (btnRight.innerHTML === "SPLIT") {
     var newTime = document.createElement("li");
-    newTime.innerHTML = `${minDec.innerHTML}${minUni.innerHTML} : ${secDec.innerHTML}${secUni.innerHTML}`;
+    newTime.innerHTML = `${minDec.innerHTML}${minUni.innerHTML} : ${secDec.innerHTML}${secUni.innerHTML} : ${milDec.innerHTML}${milUni.innerHTML}`;
     splits.appendChild(newTime);
   } else {
     chronometer.resetClick();
@@ -88,5 +89,7 @@ btnRight.addEventListener('click', function () {
     minUni.innerHTML = 0;
     secDec.innerHTML = 0;
     secUni.innerHTML = 0;
+    milDec.innerHTML = 0;
+    milUni.innerHTML = 0;
   }
 });
