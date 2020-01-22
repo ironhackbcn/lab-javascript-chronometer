@@ -13,12 +13,13 @@ var milUni      = document.getElementById('milUni');
 function printTime() {
    printMinutes();
    printSeconds();
+   
     
 }
 
 function printMinutes() {
     var minutes = chronometer.setTime()[0];
-    console.log(minutes);
+    
     minDec.innerHTML = minutes[0];
     minUni.innerHTML = minutes[1];
     
@@ -26,7 +27,7 @@ function printMinutes() {
 
 function printSeconds() {
     var seconds = chronometer.setTime()[1];
-    console.log(seconds);
+    
     secDec.innerHTML = seconds[0];
     secUni.innerHTML = seconds[1];
 }
@@ -74,13 +75,15 @@ btnLeft.addEventListener('click', function () {
         btnLeft.innerHTML="START";
         btnRight.className="btn reset";
         btnRight.innerHTML="RESET";
+        setStopBtn();
+        
     }
 });
 
 // Reset/Split Button
 btnRight.addEventListener('click', function () {
     if (btnRight.className==="btn reset"){
-        
+        setResetBtn();
     }
     else if(btnRight.className==="btn split"){
         var orderList = document.querySelector("#splits");

@@ -43,11 +43,21 @@ Chronometer.prototype.setTime = function () {
 // };
 
 Chronometer.prototype.stopClick = function () {
-  clearInterval(this.intervalId);
+  this.intervalId=clearInterval(intervalId);
 };
 
 Chronometer.prototype.resetClick = function () {
-    clearInterval(this.currentTime);
+  this.currentTime=clearInterval(this.currentTime);
+  this.currentTime=0;
+   
+  var minDec      = document.getElementById('minDec');
+  var minUni      = document.getElementById('minUni');
+  var secDec      = document.getElementById('secDec');
+  var secUni      = document.getElementById('secUni');
+  minDec.innerHTML=0;
+  minUni.innerHTML=0;
+  secDec.innerHTML=0;
+  secUni.innerHTML=0;
 };
 
 // Chronometer.prototype.splitClick = function () {
