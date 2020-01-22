@@ -10,10 +10,9 @@ var milUni = document.getElementById('milUni');
 
 
 function printTime() {
-
     printMinutes();
     printSeconds();
-
+    printMilliseconds();
 }
 
 function printMinutes() {
@@ -30,7 +29,9 @@ function printSeconds() {
 }
 
 function printMilliseconds() {
-
+    const msPrint = chronometer.MS
+    milDec.innerHTML = msPrint[0];
+    milUni.innerHTML = msPrint[1]
 }
 
 function printSplit() {
@@ -80,10 +81,10 @@ btnLeft.addEventListener('click', function () {
 
 // Reset/Split Button
 btnRight.addEventListener('click', function () {
-    if(btnRight.classList.contains('split')){
+    if (btnRight.classList.contains('split')) {
         chronometer.splitClick()
     }
-    else if (btnRight.classList.contains('reset')){
+    else if (btnRight.classList.contains('reset')) {
         chronometer.resetClick()
     }
 });
