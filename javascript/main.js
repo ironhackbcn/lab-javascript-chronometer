@@ -71,7 +71,7 @@ btnLeft.addEventListener('click', function () {
         btnLeft.innerHTML = "START";
         btnLeft.classList.remove("stop");
         btnLeft.classList.add("start");
-        btnRight.innerHTML = "STOP"
+        btnRight.innerHTML = "RESET"
         btnRight.classList.add('reset');
         btnRight.classList.remove('split');
         chronometer.stopClick();
@@ -80,5 +80,10 @@ btnLeft.addEventListener('click', function () {
 
 // Reset/Split Button
 btnRight.addEventListener('click', function () {
-
+    if(btnRight.classList.contains('split')){
+        chronometer.splitClick()
+    }
+    else if (btnRight.classList.contains('reset')){
+        chronometer.resetClick()
+    }
 });

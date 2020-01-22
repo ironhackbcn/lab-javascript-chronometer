@@ -33,7 +33,15 @@ Chronometer.prototype.stopClick = function () {
 }
 Chronometer.prototype.resetClick = function () {
     this.currentTime = 0;
+    minDec.innerHTML = 0;
+    minUni.innerHTML = 0;
+    secUni.innerHTML = 0;
+    secDec.innerHTML = 0;
+    const orderedList = document.querySelector('#splits');
+    orderedList.innerHTML = ""
 }
 
-
-Chronometer.prototype.splitClick = function () { }
+Chronometer.prototype.splitClick = function () {
+    const orderedList = document.querySelector('#splits')
+    orderedList.innerHTML += `<li> ${this.minutes}:${this.seconds} </li>`
+}
